@@ -6,10 +6,14 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using PersonExample.Data;
+using PersonExample.Repositories;
+using PersonExample.Services;
 
 namespace PersonExample
 {
@@ -25,6 +29,12 @@ namespace PersonExample
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
+			services.AddScoped<IPersonRepository, PersonRepository>();
+			services.AddScoped<IPersonService, PersonService>();
+			services.AddDbContext<PhonepersondbContext>(option =>
+			{
+				option.UseSqlServer(Configuration.GetConnectionString("LocalPersonConnnectionString"));
+			});
 			services.AddControllers();
 		}
 
