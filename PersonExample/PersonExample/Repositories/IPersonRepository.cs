@@ -8,6 +8,7 @@ namespace PersonExample.Repositories
 {
 	public interface IPersonRepository
 	{
+		Person Create(Person person);
 		List<Person> Read();
 		Person Read(string id);
 	}

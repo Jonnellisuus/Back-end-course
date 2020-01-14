@@ -18,6 +18,13 @@ namespace PersonExample.Repositories
 			_phonepersondbContext = phonepersondbContext;
 		}
 
+		public Person Create(Person person)
+		{
+			_phonepersondbContext.Person.Add(person);
+			_phonepersondbContext.SaveChanges();
+			return person;
+		}
+
 		// Get all the persons in the list.
 		public List<Person> Read()
 		{

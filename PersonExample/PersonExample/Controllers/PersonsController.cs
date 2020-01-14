@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PersonExample.Models;
 using PersonExample.Repositories; // Needs to be added
 using PersonExample.Services;
 
@@ -47,8 +48,10 @@ namespace PersonExample.Controllers
 
         // POST: api/Persons
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] Person person)
         {
+            var result = _personRepository.Create(person);
+            return new JsonResult(result);
         }
 
         // PUT: api/Persons/5
