@@ -18,6 +18,13 @@ namespace PersonExample.Services
 			_personRepository = personRepository;
 		}
 
+		public void Delete(string id)
+		{
+			Person removedPerson = _personRepository.Read(id);
+
+			_personRepository.Delete(removedPerson);
+		}
+
 		public List<Person> Read()
 		{
 			return _personRepository.Read();

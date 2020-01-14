@@ -11,5 +11,6 @@ namespace PersonExample.Repositories
 		Person Create(Person person);
 		List<Person> Read();
 		Person Read(string id);
+		void Delete(Person person);
 	}
 }

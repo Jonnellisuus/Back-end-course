@@ -18,11 +18,19 @@ namespace PersonExample.Repositories
 			_phonepersondbContext = phonepersondbContext;
 		}
 
+		// Creates a new person.
 		public Person Create(Person person)
 		{
 			_phonepersondbContext.Person.Add(person);
 			_phonepersondbContext.SaveChanges();
 			return person;
+		}
+
+		// Deletes a specific person by ID.
+		public void Delete(Person person)
+		{
+			_phonepersondbContext.Person.Remove(person);
+			_phonepersondbContext.SaveChanges();
 		}
 
 		// Get all the persons in the list.

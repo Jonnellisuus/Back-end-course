@@ -10,5 +10,6 @@ namespace PersonExample.Services
 	{
 		List<Person> Read();
 		Person Read(string id);
+		void Delete(string id);
 	}
 }

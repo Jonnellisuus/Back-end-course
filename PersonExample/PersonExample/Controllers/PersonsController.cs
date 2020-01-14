@@ -62,8 +62,9 @@ namespace PersonExample.Controllers
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Delete(string id)
         {
+            _personService.Delete(id);
         }
     }
 }
