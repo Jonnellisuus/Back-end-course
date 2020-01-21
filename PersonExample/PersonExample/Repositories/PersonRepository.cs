@@ -46,5 +46,23 @@ namespace PersonExample.Repositories
 			var person = _phonepersondbContext.Person.FirstOrDefault(p => p.Id == id);
 			return person;
 		}
+
+		public Person Update(string id, Person person)
+		{
+
+			var savedPerson = Read(id);
+			if (savedPerson == null)
+			{
+				throw new Exception("Person not found");
+			}
+
+			else
+			{
+				_phonepersondbContext.Update(person);
+
+				_phonepersondbContext.SaveChanges();
+				return person;
+			}
+		}
 	}
 }

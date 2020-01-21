@@ -18,6 +18,11 @@ namespace PersonExample.Services
 			_personRepository = personRepository;
 		}
 
+		public Person Create(Person person)
+		{
+			return _personRepository.Create(person);
+		}
+
 		public void Delete(string id)
 		{
 			Person removedPerson = _personRepository.Read(id);
@@ -33,6 +38,21 @@ namespace PersonExample.Services
 		public Person Read(string id)
 		{
 			return _personRepository.Read(id);
+		}
+
+		public Person Update(string id, Person person)
+		{
+			var savedPerson = _personRepository.Read(id);
+
+			if (savedPerson == null)
+			{
+				throw new Exception("Person not found");
+			}
+
+			else
+			{
+				return _personRepository.Update(id, person);
+			}
 		}
 	}
 }
