@@ -1,4 +1,5 @@
 using System;
+using System.Text.Json;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -36,6 +37,12 @@ namespace PersonExample
 				option.UseSqlServer(Configuration.GetConnectionString("LocalPersonConnnectionString"));
 			});
 			services.AddControllers();
+
+			// Ignore JSON serialization
+			services.AddMvc().AddNewtonsoftJson(json => json.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+			// MVC must be last service. Tässä muutos CompatibilityVersion.Version_3_0
+			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

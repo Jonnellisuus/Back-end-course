@@ -1,4 +1,5 @@
-﻿using PersonExample.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using PersonExample.Data;
 using PersonExample.Models;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,10 @@ namespace PersonExample.Repositories
 		// Creates a new person.
 		public Person Create(Person person)
 		{
+			// 1. INSERT Lisätään henkilö PERSON -tauluun.
+			// 2. SELECT luetaan ja otetaan talteen uuden henkilön ID.
+			// 3. INSERT lisätään puhelinnumero PHONE -tauluun viiteavaimena käytetään
+
 			_phonepersondbContext.Person.Add(person);
 			_phonepersondbContext.SaveChanges();
 			return person;
@@ -36,14 +41,18 @@ namespace PersonExample.Repositories
 		// Get all the persons in the list.
 		public List<Person> Read()
 		{
-			var persons = _phonepersondbContext.Person.ToList();
+			var persons = _phonepersondbContext.Person
+				.Include(p => p.Phone)
+				.ToList();
 			return persons;
 		}
-
+		
 		// Get specific person by ID.
 		public Person Read(string id)
 		{
-			var person = _phonepersondbContext.Person.FirstOrDefault(p => p.Id == id);
+			var person = _phonepersondbContext.Person
+				.Include(p => p.Phone)
+				.FirstOrDefault(p => p.Id == id);
 			return person;
 		}
 
