@@ -40,20 +40,20 @@ namespace PersonExample.Services
 			return _personRepository.Read(id);
 		}
 
-		public Person Update(string id, Person person)
+		public Person Update(/*string id,*/ Person person)
 		{
-			// return _personRepository.Update(person);
-			var savedPerson = _personRepository.Read(id);
+			return _personRepository.Update(person);
+			//var savedPerson = _personRepository.Read(id);
 
-			if (savedPerson == null)
-			{
-				throw new Exception("Person not found");
-			}
+			//if (savedPerson == null)
+			//{
+			//	throw new Exception("Person not found");
+			//}
 
-			else
-			{
-				return _personRepository.Update(id, person);
-			}
+			//else
+			//{
+			//	return _personRepository.Update(id, person);
+			//}
 		}
 	}
 }

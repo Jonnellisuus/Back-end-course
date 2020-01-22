@@ -12,6 +12,6 @@ namespace PersonExample.Repositories
 		List<Person> Read();
 		Person Read(string id);
 		void Delete(Person person);
-		Person Update(string id, Person person);
+		Person Update(/*string id,*/ Person person);
 	}
 }

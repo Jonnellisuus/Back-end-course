@@ -56,22 +56,25 @@ namespace PersonExample.Repositories
 			return person;
 		}
 
-		public Person Update(string id, Person person)
+		public Person Update(/*string id,*/ Person person)
 		{
+			_phonepersondbContext.Person.Update(person);
+			_phonepersondbContext.SaveChanges();
+			return person;
 
-			var savedPerson = Read(id);
-			if (savedPerson == null)
-			{
-				throw new Exception("Person not found");
-			}
+			//var savedPerson = Read(id);
+			//if (savedPerson == null)
+			//{
+			//	throw new Exception("Person not found");
+			//}
 
-			else
-			{
-				_phonepersondbContext.Update(person);
+			//else
+			//{
+			//	_phonepersondbContext.Person.Update(person);
 
-				_phonepersondbContext.SaveChanges();
-				return person;
-			}
+			//	_phonepersondbContext.SaveChanges();
+			//	return person;
+			//}
 		}
 	}
 }

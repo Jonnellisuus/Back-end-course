@@ -56,9 +56,9 @@ namespace PersonExample.Controllers
 
         // PUT: api/Persons/5
         [HttpPut("{id}")]
-        public IActionResult Update(string id, Person person)
+        public ActionResult Put(string id, [FromBody] Person person)
         {
-            var updatedPerson = _personService.Update(id, person);
+            var updatedPerson = _personService.Update(/*id,*/ person);
             return new JsonResult(updatedPerson);
         }
 
