@@ -28,7 +28,7 @@ namespace RateTask.Controllers
         }
 
         // GET: api/Rate
-        // Get all the customers in the list.
+        // Get all the rates in the list.
         [HttpGet]
         public IActionResult Get()
         {
@@ -37,11 +37,11 @@ namespace RateTask.Controllers
         }
 
         // GET: api/Rate/5
-        // Get a specific rate by id.
-        [HttpGet("{id}", Name = "Get")]
-        public IActionResult Get(string id)
+        // Get a specific rate by country.
+        [HttpGet("{country}", Name = "Get")] // If there is more than one controller -- Name = "Get" -- needs to be removed from every controller.
+        public IActionResult Get(string country)
         {
-            var getRate = _rateService.Read(id);
+            var getRate = _rateService.Read(country);
             return new JsonResult(getRate);
         }
 
@@ -55,8 +55,8 @@ namespace RateTask.Controllers
         }
 
         // PUT: api/Rate/5
-        // Update a specific rate by id.
-        [HttpPut("{id}")]
+        // Update a specific rate by country.
+        [HttpPut("{country}")]
         public ActionResult Put([FromBody] RATE rate)
         {
             var updateRate = _rateService.Update(rate);
@@ -64,7 +64,7 @@ namespace RateTask.Controllers
         }
 
         // DELETE: api/ApiWithActions/5
-        // Delete a specific rate by id.
+        // Delete a specific rate by country.
         [HttpDelete("{id}")]
         public void Delete(string id)
         {

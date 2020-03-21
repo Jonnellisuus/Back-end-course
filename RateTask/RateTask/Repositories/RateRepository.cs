@@ -27,7 +27,7 @@ namespace RateTask.Repositories
 			return rate;
 		}
 
-		// Delete a specific rate by id.
+		// Delete a specific rate by country.
 		public void Delete(RATE rate)
 		{
 			_dtbankdbV3Context.RATE.Remove(rate);
@@ -41,14 +41,14 @@ namespace RateTask.Repositories
 			return rate;
 		}
 
-		// Get a specific rate by ID.
-		public RATE Read(string id)
+		// Get a specific rate by country.
+		public RATE Read(string country)
 		{
-			var rate = _dtbankdbV3Context.RATE.FirstOrDefault(r => r.Id == id);
+			var rate = _dtbankdbV3Context.RATE.FirstOrDefault(r => r.Country == country);
 			return rate;
 		}
 
-		// Update a specific rate by id.
+		// Update a specific rate by country.
 		public RATE Update(RATE rate)
 		{
 			_dtbankdbV3Context.RATE.Update(rate);

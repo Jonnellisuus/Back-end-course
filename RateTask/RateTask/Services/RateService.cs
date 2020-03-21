@@ -24,7 +24,7 @@ namespace RateTask.Services
 			return _rateRepository.Create(rate);
 		}
 
-		// Delete a specific rate by id.
+		// Delete a specific rate by country.
 		public void Delete(string id)
 		{
 			RATE deleteRate = _rateRepository.Read(id);
@@ -37,13 +37,13 @@ namespace RateTask.Services
 			return _rateRepository.Read();
 		}
 
-		// Get a specific customers by ID.
-		public RATE Read(string id)
+		// Get a specific rate by country.
+		public RATE Read(string country)
 		{
-			return _rateRepository.Read(id);
+			return _rateRepository.Read(country);
 		}
 
-		// Update a specific rate by id.
+		// Update a specific rate by country.
 		public RATE Update(RATE rate)
 		{
 			return _rateRepository.Update(rate);
