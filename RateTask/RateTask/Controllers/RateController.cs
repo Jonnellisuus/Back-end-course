@@ -4,6 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RateTask.Models; // Needs to be added.
+using RateTask.Repositories; // Needs to be added.
+using RateTask.Services; // Needs to be added.
 
 namespace RateTask.Controllers
 {
@@ -11,6 +14,19 @@ namespace RateTask.Controllers
     [ApiController]
     public class RateController : ControllerBase
     {
+        // Inject repository layer
+        private readonly IRateRepository _rateRepository;
+
+        // Inject service layer
+        private readonly IRateService _rateService;
+
+        // Define constructor
+        public RateController(IRateRepository rateRepository, IRateService rateService)
+        {
+            _rateRepository = rateRepository;
+            _rateService = rateService;
+        }
+
         // GET: api/Rate
         [HttpGet]
         public IEnumerable<string> Get()
