@@ -28,35 +28,47 @@ namespace RateTask.Controllers
         }
 
         // GET: api/Rate
+        // Get all the customers in the list.
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            var getRates = _rateRepository.Read();
+            return new JsonResult(getRates);
         }
 
         // GET: api/Rate/5
+        // Get a specific rate by id.
         [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        public IActionResult Get(string id)
         {
-            return "value";
+            var getRate = _rateService.Read(id);
+            return new JsonResult(getRate);
         }
 
         // POST: api/Rate
+        // Create a new rate.
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] RATE rate)
         {
+            var createRate = _rateService.Create(rate);
+            return new JsonResult(createRate);
         }
 
         // PUT: api/Rate/5
+        // Update a specific rate by id.
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public ActionResult Put([FromBody] RATE rate)
         {
+            var updateRate = _rateService.Update(rate);
+            return new JsonResult(updateRate);
         }
 
         // DELETE: api/ApiWithActions/5
+        // Delete a specific rate by id.
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Delete(string id)
         {
+            _rateService.Delete(id);
         }
     }
 }
