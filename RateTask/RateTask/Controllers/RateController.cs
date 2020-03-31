@@ -42,6 +42,7 @@ namespace RateTask.Controllers
         public IActionResult Get(string country)
         {
             var getRate = _rateService.Read(country);
+          
             return new JsonResult(getRate);
         }
 
@@ -69,6 +70,27 @@ namespace RateTask.Controllers
         public void Delete(string id)
         {
             _rateService.Delete(id);
+        }
+
+        // GET: api/Rate/{amount}/{fromCurrency}/{toCurrency}
+        // Currency converter.
+        [HttpGet("{amount}/{fromCurrency}/{toCurrency}")]
+        public IActionResult Get(int amount, string fromCurrency, string toCurrency)
+        {
+            var getCurrencyFrom = _rateService.Read(fromCurrency);
+            var getCurrencyTo = _rateService.Read(toCurrency);
+
+            var rateValue = getCurrencyTo.Rate1 / getCurrencyFrom.Rate1 * amount;
+
+            var rateResult = new RateResult
+            {
+                FromCurrency = fromCurrency,
+                ToCurrency = toCurrency,
+                Amount = amount,
+                ConvertedCurrency = rateValue
+            };
+
+            return new JsonResult(rateResult);
         }
     }
 }
