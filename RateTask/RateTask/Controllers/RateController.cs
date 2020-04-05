@@ -75,7 +75,7 @@ namespace RateTask.Controllers
         // GET: api/Rate/{amount}/{fromCurrency}/{toCurrency}
         // Currency converter.
         [HttpGet("{amount}/{fromCurrency}/{toCurrency}")]
-        public IActionResult Get(int amount, string fromCurrency, string toCurrency)
+        public IActionResult Get(decimal amount, string fromCurrency, string toCurrency)
         {
             var getCurrencyFrom = _rateService.Read(fromCurrency);
             var getCurrencyTo = _rateService.Read(toCurrency);
